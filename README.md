@@ -11,6 +11,7 @@ Forked in 2022 to:
  - Rewrite in Typescript and remove peg.js parser for a much simpler codebase
  - Tweak output syntax for easier usage
  - Add line number output
+ - Add support for languages where doc comment lines instead begin with a given prefix, like Emmylua annotations.
 
 A couple of things I didn't bother porting as they weren't relevant to me, feel free to make a PR though:
  - file streaming
@@ -40,7 +41,7 @@ A couple of things I didn't bother porting as they weren't relevant to me, feel 
 
 ```json
 {
-  "Example": {
+  "@Example": {
     "lineBefore": 0,
     "lineAfter": 15,
     "text": "Text can go anywhere.\n   Whitespace is preserved.",
@@ -178,6 +179,7 @@ cod -b '###*' -e '###' *.coffee
 cod -b "'''*" -e "'''" *.py
 cod -b '{-*' -e '-}' *.hs
 cod -b '--[[*' -e ']]' *.lua
+cod -p '---' *.lua
 ```
 
 ```
@@ -199,6 +201,7 @@ Usage: cod [-b <doc-begin> -e <doc-end>] [-o <output-file>] [-u] [<input-file>..
 Options:
   -b <doc-begin>    String that marks the start of a doc-block  (default: "/**")
   -e <doc-end>      String that marks the end of a doc-block (default: "*/")
+  -p <doc-line-prefix>  String that marks the line prefix of a doc-block (default: "", doc-begin and doc-end are ignored if used)
   -o <output-file>  Output file (default: "STDOUT")
   -u --ugly         Output non-pretty JSON.
   -v --version      output the current version
@@ -225,6 +228,10 @@ Options:
 > > <a name='api_cod_options_docEnd'></a>
 > > [`docEnd`](#api_cod_options_docEnd) (String) default: `"*/"`
 > > > String that marks the end of a doc-block
+>
+> > <a name='api_cod_options_ docLinePrefix'></a>
+> > [`docLinePrefix`](#api_cod_options_ docLinePrefix) (String) default: `""`
+> > > String that marks the line prefix of a doc-block - [`docBegin`](#api_cod_options_docBegin) and [`docEnd`](#api_cod_options_docEnd) are ignored if used.
 
 ```js
 import { cod } from 'cod';

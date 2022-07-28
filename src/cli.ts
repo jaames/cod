@@ -17,10 +17,11 @@ cod: An unassuming documentation generator.
   .name('cod')
   .usage('[-b <doc-begin> -e <doc-end>] [-o <output-file>] [-u] <input-file>...')
   .showHelpAfterError('(add --help for additional information)')
-  .option('-b <doc-begin>',   'String that marks the start of a doc-block', '/**')
-  .option('-e <doc-end>',     'String that marks the end of a doc-block', '*/')
-  .option('-o <output-file>', 'Output file', 'STDOUT')
-  .option('-u --ugly',        'Output non-pretty JSON.', false)
+  .option('-b <doc-begin>',       'String that marks the start of a doc-block', '/**')
+  .option('-e <doc-end>',         'String that marks the end of a doc-block', '*/')
+  .option('-p <doc-line-prefix>', 'String that marks the line prefix of a doc-block', '')
+  .option('-o <output-file>',     'Output file', 'STDOUT')
+  .option('-u --ugly',            'Output non-pretty JSON.', false)
   .version(pkg.version, '-v --version', 'output the current version');
 
 program.parse();
@@ -36,6 +37,7 @@ else {
   const transformed = cod(input, {
     docBegin: options.b,
     docEnd: options.e,
+    docLinePrefix: options.p,
   });
   const formatted = options.u ? JSON.stringify(transformed) : JSON.stringify(transformed, null, 2);
   if (options.o === 'STDOUT') {

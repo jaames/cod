@@ -1,6 +1,6 @@
 {
   "name": "@jaames/cod",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An unopinionated documentation generator.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "build+run": "rollup -c --environment BUILD:production && node ./dist/cli.js ./test.js"
+    "buildrun": "rollup -c --environment BUILD:production && node ./dist/cli.js ./test.js"
   },
   "repository": {
     "type": "git",

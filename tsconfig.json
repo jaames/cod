@@ -16,10 +16,6 @@
     "downlevelIteration": true,
     "paths": {
       "*" : ["src/types/*"]
-    },
-    "typeRoots": [
-      "./src/custom.d.ts",
-      "node_modules/@types",
-    ]
+    }
   }
 }
