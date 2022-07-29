@@ -30,6 +30,17 @@ module.exports = [
     output: [
       {
         file: 'dist/cod.js',
+        format: 'umd',
+        name: 'cod',
+      }
+    ],
+    plugins: basePlugins('esnext', 'es5')
+  },
+  {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: 'dist/cod.es.js',
         format: 'es',
         name: 'cod',
       }

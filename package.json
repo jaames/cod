@@ -1,12 +1,16 @@
 {
   "name": "@jaames/cod",
-  "version": "1.1.0",
+  "version": "1.2.3",
   "description": "An unopinionated documentation generator.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "files": [
+    "dist/*.js"
+  ],
+  "main": "dist/cod.js",
+  "module": "dist/cod.es.js",
   "bin": {
     "cod": "dist/cli.js"
   },
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "buildrun": "rollup -c --environment BUILD:production && node ./dist/cli.js ./test.js"
